@@ -15,8 +15,8 @@ CoffeeSchema.set('toJSON', {
             id: ret._id,
             Name: ret.name,
             Size: ret.size,
-            Shots: ret.shots,
-            Milk: ret.milk
+            Number_of_Shots: ret.shots,
+            Type_of_Milk: ret.milk
         };
         return returnJson;
     }
