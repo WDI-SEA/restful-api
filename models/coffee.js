@@ -1,5 +1,4 @@
 var mongoose = require("mongoose");
-var bcrypt = require("bcrypt");
 
 var CoffeeSchema = mongoose.Schema({
 	name: String,
@@ -21,14 +20,11 @@ CoffeeSchema.set("toJSON", {
 	}
 });
 
-CoffeeSchema.methods.authenticated = function(password, callback) {
-  bcrypt.compare(password, this.password, function(err, res) {
-      if (err) {
-        callback(err);
-      } else {
-        callback(null, res ? this : false);
-      }
-  });
-}
+CoffeeSchema.pre("save", function(next) {
+	var coffee = this;
+	next();
+});
+
+
 
 module.exports = mongoose.model('Coffee', CoffeeSchema);
